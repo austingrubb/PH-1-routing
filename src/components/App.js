@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import Home from './Home/Home';
 import About from './About/About';
-
+import {Route, Link} from 'react-router-dom'
 
 class App extends Component {
-  componentDidMount(){
-    window.addEventListener("hashchange", () => this.forceUpdate())
-  }
+  
   render() {
     return (
       <div>
-        <div>
-          <a href= '/#'>Home</a>
-          <a href= '/#/about'>About</a>
-        </div>
-        {window.location.hash === '#/about' ? <About/> : <Home/>}
+        <nav>
+          <Link to= '/'>Home</Link>
+          <Link to= '/about'>About</Link>
+        </nav>
+        <main>
+          <Route path='/' exact component={Home}/>
+          <Route path='/about' component={About}/>
+        </main>
       </div>
     );
   }
